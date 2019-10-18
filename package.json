@@ -12,13 +12,18 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.3",
     "cookie-parser": "^1.4.4",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-handlebars": "^3.0.0",
+    "express-validator": "^6.2.0",
     "jquery-parallax.js": "^1.5.0",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
     "mysql2": "^1.6.4",
+    "path": "^0.12.7",
     "sequelize": "^4.44.3"
   },
   "devDependencies": {

@@ -30,7 +30,11 @@ const storySchema = new Schema({
         type: String,
         required: true
       }
-    }]
+    }],
+    date: {
+      type: Date,
+      default: Date.now
+  }
 })
 
 module.exports = Story = mongoose.model("story", storySchema);
