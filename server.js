@@ -1,48 +1,36 @@
-require("dotenv").config();
+const path = require('path');
 var express = require("express");
-var exphbs = require("express-handlebars");
-var db = require('./models');
+var db = require('./config/db.js');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
-app.use(require('cookie-parser')(process.env.SECRET));
-
-// Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.use(express.json({ extended: false }));
 
 // Routes
 
 app.use('/stories', require('./routes/stories'));
 app.use('/users', require('./routes/users'));
 
-require("./routes/htmlRoutes")(app);
+// Starting the server, syncing our models ------------------------------------/
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers");
+  next();
+});
 
-var syncOptions = { force: false };
+if(process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('client/build'));
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
 }
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(() => {
-  app.listen(PORT, function () {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-}).catch(err => {
-  if (err) throw err;
-})
+app.listen(PORT, () => 
+  console.log("Listening")
+)
 
 
 
