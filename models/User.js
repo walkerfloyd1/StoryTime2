@@ -1,19 +1,20 @@
-require('dotenv').config();
-var bcrypt = require('bcrypt');
-var { SALT_ROUNDS } = process.env;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-module.exports = function (sequelize, {STRING}) {
-  var User = sequelize.define("User", { 
-    username: { type: STRING, allowNull: false, unique: true }, 
-    email: { type: STRING, allowNull: false, unique: true }, 
-    password: { type: STRING, allowNull: false, unique: true }
-  }, { timestamps: false });
-  User.beforeCreate(user => bcrypt.hash(user.password, parseInt(SALT_ROUNDS))
-      .then(hash => user.password = hash)
-      .catch(err => console.log(err)));
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
-  
-  return User;
-};
+const UserSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+});
+
+module.exports = User = mongoose.model("user", UserSchema);

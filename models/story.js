@@ -1,32 +1,38 @@
-module.exports = function (sequelize, DataTypes) {
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-
-  var Story = sequelize.define("Story", {
+const storySchema = new Schema({
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
     title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
+      type: String
     },
     genre: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
+      type: String
     },
     text: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    }
-  }, {timestamps: false});
-  Story.associate = function (models) {
-    Story.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
+      type: String
+    },
+    likes: [{
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
       }
-    });
-  };
-  return Story;
-};
+    }],
+    comments: [{
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      text: {
+        type: String,
+        required: true
+      }
+    }]
+})
+
+module.exports = Story = mongoose.model("story", storySchema);
+
+
