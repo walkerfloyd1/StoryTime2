@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import './styles/App.css';
 
-import Landing from './redux/layout/Landing';
-import Dashboard from './redux/dashboard/Dashboard';
-import Login from './redux/auth/Login';
-import Register from './redux/auth/Register';
-import Profile from './redux/profile/Profile';
-import CreateProfile from './redux/profile-forms/CreateProfile';
-import Profiles from './redux/profiles/Profiles';
-import Stories from './redux/stories/Stories';
-import Story from './redux/story/Story';
+import Landing from './components/redux/layout/Landing';
+import Dashboard from './components/redux/dashboard/Dashboard';
+import Login from './components/redux/auth/Login';
+import Register from './components/redux/auth/Register';
+import Profile from './components/redux/profile/Profile';
+import CreateProfile from './components/redux/profile-forms/CreateProfile';
+import Profiles from './components/redux/profiles/Profiles';
+import Stories from './components/redux/stories/Stories';
+import Story from './components/redux/story/Story';
 
 const App = () => {
   return (
