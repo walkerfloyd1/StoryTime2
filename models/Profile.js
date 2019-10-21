@@ -9,6 +9,12 @@ const ProfileSchema = new Schema({
     genres: {
         type: [String]
     },
+    books: {
+        type: [String]
+    },
+    authors: {
+        type: [String]
+    },
     social: {
         youtube: {
             type: String

@@ -35,7 +35,16 @@ async (req, res) => {
         })
     }
 
-    const { genres, youtube, facebook, twitter, instagram, linkedin } = req.body;
+    const { 
+        genres,
+        bio,
+        books,
+        authors, 
+        youtube, 
+        facebook, 
+        twitter, 
+        instagram, 
+        linkedin } = req.body;
 
     //Build Profile object
 
@@ -44,6 +53,18 @@ async (req, res) => {
 
     if (genres) {
         profileFields.genres = genres;
+    };
+
+    if (bio) {
+        profileFields.bio = bio;
+    };
+
+    if (books) {
+        profileFields.books = books;
+    };
+
+    if (authors) {
+        profileFields.authors = authors;
     };
 
     //build social fields 
