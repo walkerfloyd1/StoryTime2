@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import StoryItem from '../stories/StoryItem';
 import AddToStory from './AddToStory';
-import AddToStoryItem from './AddTostoryItem';
-import { getPost } from '../../../actions/stories';
+import AddToStoryItem from './AddToStoryItem';
+import { getPost } from '../../../actions/story';
 
 const Story = ({
     getPost,
