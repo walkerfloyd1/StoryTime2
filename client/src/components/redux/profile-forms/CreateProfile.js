@@ -69,26 +69,6 @@ const CreateProfile = ({
           >
         </div>
         <div className="form-group">
-          <input type="text" 
-          placeholder="* authors" 
-          name="authors" 
-          value={authors} 
-          onChange={e => onChange(e)}/>
-          <small className="form-text"
-            >Please separate each author by commas</small
-          >
-        </div>
-        <div className="form-group">
-          <input type="text" 
-          placeholder="* books" 
-          name="books" 
-          value={books} 
-          onChange={e => onChange(e)}/>
-          <small className="form-text"
-            >Please separate each book by commas</small
-          >
-        </div>
-        <div className="form-group">
           <textarea placeholder="A short bio of yourself" 
           name="bio"
           value={bio} 

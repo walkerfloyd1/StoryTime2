@@ -9,12 +9,40 @@ const ProfileSchema = new Schema({
     genres: {
         type: [String]
     },
-    books: {
-        type: [String]
+    books: [
+        {
+            title: {
+                type: String,
+                required: true
+            },
+            genre: {
+                type: String,
+                required: true
+            },
+            authors: {
+                type: [String],
+                required: true
+            },
+            description: {
+                type: String
+            }
+        }
+    ],
+    bio: {
+        type: String
     },
-    authors: {
-        type: [String]
-    },
+    authors: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            books: {
+                type: [String],
+                required: true
+            }
+        }
+    ],
     social: {
         youtube: {
             type: String

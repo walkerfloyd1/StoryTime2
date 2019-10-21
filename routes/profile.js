@@ -147,6 +147,133 @@ router.delete('/', auth, async (req, res) => {
         console.error(err.message);
         res.status(500).send('Server Error')
     }
-})
+});
+
+router.put('/authors', 
+[ auth, 
+    [
+    check('name', 'Name is required').not().isEmpty(),
+    check('books', 'Books are required').not().isEmpty(),
+]
+], 
+async (req, res) => {
+    const errors = validationResult(req);
+   
+    if(!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+        name, 
+        books, 
+    } = req.body;
+
+    const newAuth = {
+        name, 
+        books, 
+    };
+
+    try {
+        const profile = await Profile.findOne({ user: req.user.id })
+
+        profile.experience.unshift(newAuth);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+});
+
+router.delete('/authors/:exp_id', auth, async (req, res) => {
+    try {
+        const foundProfile = await Profile.findOne({ user: req.user.id });
+        const authIds = foundProfile.authors.map(autho => autho._id.toString());
+
+        // GET remove index
+        const removeIndex = authIds.indexOf(req.params.exp_id);
+        
+        if (removeIndex === -1) {
+            return res.status(500).json({ msg: "Server error" });
+          } else {
+ 
+            foundProfile.experience.splice(removeIndex, 1);
+            await foundProfile.save();
+            return res.status(200).json(foundProfile);
+          }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+}
+);
+
+router.put('/books', 
+[ auth, 
+    [
+    check('title', 'Title is required').not().isEmpty(),
+    check('genre', 'Genre is required').not().isEmpty(),
+    check('authors', 'Authors are required').not().isEmpty(),
+]
+], 
+async (req, res) => {
+    const errors = validationResult(req);
+   
+    if(!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+        title, 
+        genre, 
+        authors,
+        description
+    } = req.body;
+
+    const newBook = {
+        title, 
+        genre, 
+        authors, 
+        description
+    };
+
+    try {
+        const profile = await Profile.findOne({ user: req.user.id })
+
+        profile.education.unshift(newBook);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+});
+
+router.delete('/books/:edu_id', auth, async (req, res) => {
+    try {
+        const foundProfile = await Profile.findOne({ user: req.user.id });
+        const bookIds = foundProfile.books.map(book => book._id.toString());
+
+        // GET remove index
+        const removeIndex = bookIds.indexOf(req.params.book_id);
+        
+        if (removeIndex === -1) {
+            return res.status(500).json({ msg: "Server error" });
+          } else {
+
+            foundProfile.education.splice(removeIndex, 1);
+            await foundProfile.save();
+            return res.status(200).json(foundProfile);
+          }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+}
+);
 
 module.exports = router;
