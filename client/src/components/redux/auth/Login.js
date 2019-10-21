@@ -66,7 +66,7 @@ const Login = ({
                 value="Sign In" />
             </form>
             <p>
-                Don't have an account? <Link to="/register">Register</Link>
+                Don't have an account? <Link to="/signup">Register</Link>
             </p>
         </Fragment>
     )

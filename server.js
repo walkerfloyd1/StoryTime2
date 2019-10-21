@@ -14,6 +14,7 @@ app.use(express.json({ extended: false }));
 
 app.use('/stories', require('./routes/stories'));
 app.use('/users', require('./routes/users'));
+app.use('/auth', require('./routes/auth'));
 
 // Starting the server, syncing our models ------------------------------------/
 app.use(function(req, res, next) {
@@ -31,7 +32,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => 
-  console.log("Listening")
+  console.log("Listening on " + PORT)
 )
 
 
