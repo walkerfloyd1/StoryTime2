@@ -35,7 +35,7 @@ async (req, res) => {
         })
     }
 
-    const genres = req.body;
+    const { genres, youtube, facebook, twitter, instagram, linkedin } = req.body;
 
     //Build Profile object
 
