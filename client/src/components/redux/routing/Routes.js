@@ -16,7 +16,7 @@ const Routes = props => {
     return (
         <Switch>
             <Route exact path="/signin" component={Login} />
-            <Route exact path="signup" component={Register} />
+            <Route exact path="/signup" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />

@@ -19,7 +19,7 @@ const Landing = ({ isAuthenticated }) => {
           </p>
           <div className="buttons">
             <Link to="/signin" className="btn btn-primary">Sign In</Link>
-            <Link to="/register" className="btn btn-light">Register</Link>
+            <Link to="/signup" className="btn btn-light">Register</Link>
           </div>
         </div>
       </div>

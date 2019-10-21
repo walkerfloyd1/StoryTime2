@@ -15,6 +15,7 @@ app.use(express.json({ extended: false }));
 app.use('/stories', require('./routes/stories'));
 app.use('/users', require('./routes/users'));
 app.use('/auth', require('./routes/auth'));
+app.use('/profile', require('./routes/profile'));
 
 // Starting the server, syncing our models ------------------------------------/
 app.use(function(req, res, next) {
