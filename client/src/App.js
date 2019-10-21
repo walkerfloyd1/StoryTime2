@@ -5,6 +5,7 @@ import './styles/App.css';
 import Login from './components/redux/auth/Login';
 import Register from './components/redux/auth/Register';
 import Routes from './components/redux/routing/Routes';
+import Navbar from './components/redux/layout/Navbar';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,10 +23,12 @@ const App = () => {
   return (
     <Provider store={store}>
     <Router>
-      
+      <Fragment>
+      <Navbar />
       <Route exact path="/" component={Login} />
       <Route exact path="/signup" component={Register} />
       <Route component={Routes} />
+      </Fragment>
     </Router>
     </Provider>
   )
