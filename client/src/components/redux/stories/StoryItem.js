@@ -46,7 +46,7 @@ const StoryItem = ({
             <button type="button" onClick={e => removeLike(_id)} className="btn btn-light">
               <i className="fas fa-thumbs-down"></i>
             </button>
-            <Link to={`/posts/${_id}`} className="btn btn-primary">
+            <Link to={`/stories/${_id}`} className="btn btn-primary">
               Discussion {comments.length > 0 && (
                   <span className='comment-count'>{comments.length}</span>
               )}

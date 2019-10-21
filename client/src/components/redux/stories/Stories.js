@@ -19,7 +19,7 @@ const Stories = ({ getPosts,
         <div>
             <Fragment>
             <h1 className="large text-primary">
-                Posts
+                Stories
             </h1>
             <p className="lead">
                 <i className="fas fa-user" />
