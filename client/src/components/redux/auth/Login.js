@@ -33,7 +33,7 @@ const Login = ({
         return <Redirect to="/stories" />
     }
     return (
-        <Fragment>
+        <div id="login-form">
             <h1>
                 Sign In
             </h1>
@@ -68,7 +68,7 @@ const Login = ({
             <p>
                 Don't have an account? <Link to="/signup">Register</Link>
             </p>
-        </Fragment>
+        </div>
     )
 }
 

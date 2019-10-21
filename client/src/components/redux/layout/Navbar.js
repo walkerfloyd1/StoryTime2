@@ -36,12 +36,14 @@ const Navbar = ({
     return (
         <div>
             <nav className="navbar bg-dark">
+              <div className="nav-wrapper">
       <h1>
         <Link to="/"><i className="fas fa-code"></i> StoryTeller</Link>
       </h1>
       { !loading && (<Fragment>
         {isAuthenticated ? authLinks : guestLinks }
       </Fragment>)}
+      </div>
     </nav>
         </div>
     )
