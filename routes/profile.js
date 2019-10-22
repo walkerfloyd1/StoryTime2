@@ -190,7 +190,6 @@ async (req, res) => {
 router.delete('/authors/:author_id', auth, async (req, res) => {
     try {
 
-        console.log("Hit");
         const foundProfile = await Profile.findOne({ user: req.user.id });
         const authorIds = foundProfile.authors.map(author => author._id.toString());
 
@@ -243,8 +242,12 @@ async (req, res) => {
         description
     };
 
+    console.log("Hit");
+
     try {
         const profile = await Profile.findOne({ user: req.user.id })
+
+        console.log(req.user.id);
 
         profile.books.unshift(newBook);
 
@@ -257,7 +260,7 @@ async (req, res) => {
     }
 });
 
-router.delete('/books/:edu_id', auth, async (req, res) => {
+router.delete('/books/:book_id', auth, async (req, res) => {
     try {
         const foundProfile = await Profile.findOne({ user: req.user.id });
         const bookIds = foundProfile.books.map(book => book._id.toString());
@@ -269,7 +272,7 @@ router.delete('/books/:edu_id', auth, async (req, res) => {
             return res.status(500).json({ msg: "Server error" });
           } else {
 
-            foundProfile.education.splice(removeIndex, 1);
+            foundProfile.books.splice(removeIndex, 1);
             await foundProfile.save();
             return res.status(200).json(foundProfile);
           }

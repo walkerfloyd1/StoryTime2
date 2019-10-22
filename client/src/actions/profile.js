@@ -122,6 +122,8 @@ export const addBook = (formData, history) => async dispatch => {
 
         const res = await axios.put('/profile/books', formData, config);
 
+        console.log("hit");
+
         dispatch({
             type: UPDATE_PROFILE,
             payload: res.data

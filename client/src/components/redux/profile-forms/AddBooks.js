@@ -48,7 +48,8 @@ const AddBooks = ({ addBook, history}) => {
             onChange={e => onChange(e)}/>
         </div>
         <div className="form-group">
-          <select name="genres" 
+          <select 
+          name="genre" 
           value={genre}
           onChange={e => onChange(e)}>
             <option value="Horror">Horror</option>
