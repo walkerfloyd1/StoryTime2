@@ -152,7 +152,7 @@ export const addBook = (formData, history) => async dispatch => {
 
 // adding education
 
-export const addAuthor = (formData, history) => async dispatch => {
+export const addWriter = (formData, history) => async dispatch => {
     try {
         const config = {
             header: {
@@ -160,7 +160,7 @@ export const addAuthor = (formData, history) => async dispatch => {
             }
         }
 
-        const res = await axios.put('/profile/authors', formData, config);
+        const res = await axios.put('/profile/writers', formData, config);
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -209,9 +209,9 @@ export const deleteBook = id => async dispatch => {
 }
 
 // Delete education
-export const deleteAuthor = id => async dispatch => {
+export const deleteWriter = id => async dispatch => {
     try {
-        const res = await axios.delete(`/profile/authors/${id}`);
+        const res = await axios.delete(`/profile/writers/${id}`);
 
         dispatch({
             type: UPDATE_PROFILE,

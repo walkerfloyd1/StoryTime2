@@ -12,8 +12,8 @@ const EditProfile = ({
  }) => {
     const [formData, setFormData] = useState({
         books: '',
-        author: '',
-        genre: '',
+        authors: '',
+        genres: '',
         bio: '',
         twitter: '',
         facebook: '',

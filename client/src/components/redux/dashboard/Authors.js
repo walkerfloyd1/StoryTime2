@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteAuthor } from '../../../actions/profile';
+import { deleteWriter } from '../../../actions/profile';
 
 const Authors = ({ 
     authors, 
@@ -40,7 +40,7 @@ const Authors = ({
 
 Authors.propTypes = {
     authors: PropTypes.array.isRequired,
-    deleteAuthor: PropTypes.func.isRequired,
+    deleteWriter: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deleteAuthor })(Authors);
+export default connect(null, { deleteWriter })(Authors);

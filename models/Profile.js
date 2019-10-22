@@ -31,7 +31,7 @@ const ProfileSchema = new Schema({
     bio: {
         type: String
     },
-    authors: [
+    writers: [
         {
             name: {
                 type: String,
@@ -39,7 +39,6 @@ const ProfileSchema = new Schema({
             },
             books: {
                 type: [String],
-                required: true
             }
         }
     ],

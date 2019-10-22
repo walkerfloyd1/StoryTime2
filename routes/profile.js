@@ -35,11 +35,13 @@ async (req, res) => {
         })
     }
 
+    console.log("Hit")
+
     const { 
         genres,
         bio,
         books,
-        authors, 
+        writers, 
         youtube, 
         facebook, 
         twitter, 
@@ -52,7 +54,7 @@ async (req, res) => {
     profileFields.user = req.user.id;
 
     if (genres) {
-        profileFields.genres = genres;
+        profileFields.genres = genres.split(',').map(genre => genre.trim());
     };
 
     if (bio) {
@@ -60,11 +62,14 @@ async (req, res) => {
     };
 
     if (books) {
-        profileFields.books = books;
+        profileFields.books = books.split(',').map(book => book.trim());
     };
 
-    if (authors) {
-        profileFields.authors = authors;
+    console.log("hit authors");
+
+    if (writerrs) {
+        profileFields.writers = writers.split(',').map(writer => writer.trim());
+        console.log("There is an authors profile field");
     };
 
     //build social fields 
@@ -89,17 +94,22 @@ async (req, res) => {
     try {
         let profile = await Profile.findOne({ user: req.user.id})
 
-        if (profile) {
-            // Update profile
-            profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
-            return res.json(profile)
+        console.log("hit");
+
+        if (!profile) {
+            profile = new Profile(profileFields);
+            await profile.save();
+            return res.json(profile);
         }
 
         else {
-            profile = new Profile(profileFields);
-
-            await profile.save();
-            res.json(profile);
+            console.log(req.user.id)
+            profile = await Profile.findOneAndUpdate(
+                { user: req.user.id }, 
+                { $set: profileFields }, 
+                { new: true });
+            console.log('profile hit');
+            return res.json(profile)
         }
     } catch(err) {
         console.error(err.message);
@@ -149,7 +159,7 @@ router.delete('/', auth, async (req, res) => {
     }
 });
 
-router.put('/authors', 
+router.put('/writers', 
 [ auth, 
     [
     check('name', 'Name is required').not().isEmpty(),
@@ -176,7 +186,7 @@ async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id })
 
-        profile.authors.unshift(newAuth);
+        profile.writers.unshift(newAuth);
 
         await profile.save();
 
@@ -187,22 +197,22 @@ async (req, res) => {
     }
 });
 
-router.delete('/authors/:author_id', auth, async (req, res) => {
+router.delete('/writers/:writer_id', auth, async (req, res) => {
     try {
 
         const foundProfile = await Profile.findOne({ user: req.user.id });
-        const authorIds = foundProfile.authors.map(author => author._id.toString());
+        const writerIds = foundProfile.writers.map(writer => writer._id.toString());
 
-        console.log(authorIds);
+        console.log(writerIds);
 
         // GET remove index
-        const removeIndex = authorIds.indexOf(req.params.author_id);
+        const removeIndex = writerIds.indexOf(req.params.writer_id);
         
         if (removeIndex === -1) {
             return res.status(500).json({ msg: "Server error" });
           } else {
  
-            foundProfile.authors.splice(removeIndex, 1);
+            foundProfile.writers.splice(removeIndex, 1);
             await foundProfile.save();
             return res.status(200).json(foundProfile);
           }

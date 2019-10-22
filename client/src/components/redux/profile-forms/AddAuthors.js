@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addAuthor } from '../../../actions/profile';
+import { addWriter } from '../../../actions/profile';
 import { Link, withRouter } from 'react-router-dom';
 
 const AddAuthors = ({ addAuthor, history}) => {
@@ -61,7 +61,7 @@ const AddAuthors = ({ addAuthor, history}) => {
 }
 
 AddAuthors.propTypes = {
-    addAuthor: PropTypes.func.isRequired,
+    addWriter: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addAuthor })(withRouter(AddAuthors));
+export default connect(null, { addWriter })(withRouter(AddAuthors));
