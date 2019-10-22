@@ -12,6 +12,8 @@ import Story from '../story/Story';
 import NotFound from '../layout/NotFound';
 import CreateProfile from '../profile-forms/CreateProfile';
 import EditProfile from '../profile-forms/EditProfile';
+import AddAuthors from '../profile-forms/AddAuthors';
+import AddBooks from '../profile-forms/AddBooks';
 
 const Routes = props => {
     return (
@@ -23,6 +25,8 @@ const Routes = props => {
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+            <PrivateRoute exact path="/add-authors" component={AddAuthors} />
+          <PrivateRoute exact path="/add-books" component={AddBooks} />
             <PrivateRoute exact path="/profiles" component={Profiles} />
             <PrivateRoute exact path="/stories" component={Stories} />
             <PrivateRoute exact path="/stories/:id" component={Story} />

@@ -176,7 +176,7 @@ async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id })
 
-        profile.experience.unshift(newAuth);
+        profile.authors.unshift(newAuth);
 
         await profile.save();
 
@@ -187,19 +187,23 @@ async (req, res) => {
     }
 });
 
-router.delete('/authors/:exp_id', auth, async (req, res) => {
+router.delete('/authors/:author_id', auth, async (req, res) => {
     try {
+
+        console.log("Hit");
         const foundProfile = await Profile.findOne({ user: req.user.id });
-        const authIds = foundProfile.authors.map(autho => autho._id.toString());
+        const authorIds = foundProfile.authors.map(author => author._id.toString());
+
+        console.log(authorIds);
 
         // GET remove index
-        const removeIndex = authIds.indexOf(req.params.exp_id);
+        const removeIndex = authorIds.indexOf(req.params.author_id);
         
         if (removeIndex === -1) {
             return res.status(500).json({ msg: "Server error" });
           } else {
  
-            foundProfile.experience.splice(removeIndex, 1);
+            foundProfile.authors.splice(removeIndex, 1);
             await foundProfile.save();
             return res.status(200).json(foundProfile);
           }
@@ -242,7 +246,7 @@ async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id })
 
-        profile.education.unshift(newBook);
+        profile.books.unshift(newBook);
 
         await profile.save();
 

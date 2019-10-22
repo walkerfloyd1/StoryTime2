@@ -24,7 +24,7 @@ export const getPosts = () => async dispatch => {
     } catch (error) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: error.response.statusText,
+            payload: { msg: error.response,
             status: error.response.status }
         })
     }

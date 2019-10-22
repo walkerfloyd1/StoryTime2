@@ -16,7 +16,7 @@ import {
 
 export const getCurrentProfile = () => async dispatch => {
     try {
-       const res = await axios.get('/api/profile/me');
+       const res = await axios.get('/profile/me');
        
        dispatch({
            type: GET_PROFILE,
@@ -82,7 +82,7 @@ export const createProfile = (
                 }
             }
 
-            const res = await axios.post('/api/profile', formData, config);
+            const res = await axios.post('/profile', formData, config);
 
             dispatch({
                 type: GET_PROFILE,
@@ -112,7 +112,7 @@ export const createProfile = (
 
 // adding experience
 
-export const addBooks = (formData, history) => async dispatch => {
+export const addBook = (formData, history) => async dispatch => {
     try {
         const config = {
             header: {
@@ -187,7 +187,7 @@ export const addAuthor = (formData, history) => async dispatch => {
 }
 
 // Delete experience
-export const deleteBooks = id => async dispatch => {
+export const deleteBook = id => async dispatch => {
     try {
         const res = await axios.delete(`/profile/books/${id}`);
 

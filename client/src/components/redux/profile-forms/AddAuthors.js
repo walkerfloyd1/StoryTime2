@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addAuthors } from '../../../actions/profile';
-import { withRouter } from 'react-router-dom';
+import { addAuthor } from '../../../actions/profile';
+import { Link, withRouter } from 'react-router-dom';
 
-const AddAuthors = ({ addAuthors, history}) => {
+const AddAuthors = ({ addAuthor, history}) => {
     const [formData, setFormData] = useState({
         name: '',
         books: '',
@@ -32,12 +32,12 @@ const AddAuthors = ({ addAuthors, history}) => {
       <form class="form" onSubmit={
           e => {
               e.preventDefault();
-              addAuthors(formData, history);
+              addAuthor(formData, history);
           }
       }>
         <div className="form-group">
           <input type="text"
-           placeholder="* Job Title"
+           placeholder="Name"
             name="name" 
             required 
             value={name}
@@ -61,7 +61,7 @@ const AddAuthors = ({ addAuthors, history}) => {
 }
 
 AddAuthors.propTypes = {
-    addAuthors: PropTypes.func.isRequired,
+    addAuthor: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addAuthors })(withRouter(AddAuthors));
+export default connect(null, { addAuthor })(withRouter(AddAuthors));

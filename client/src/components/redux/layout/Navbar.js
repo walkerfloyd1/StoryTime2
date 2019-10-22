@@ -17,7 +17,7 @@ const Navbar = ({
             <Link to="/stories">Stories</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/dashboard">Profile</Link>
           </li>
           <li><Link to="/profiles">
           Community</Link></li>

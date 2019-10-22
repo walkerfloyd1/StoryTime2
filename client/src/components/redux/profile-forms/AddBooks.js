@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addBooks } from '../../../actions/profile';
-import { withRouter } from 'react-router-dom';
+import { addBook } from '../../../actions/profile';
+import { Link, withRouter } from 'react-router-dom';
 
-const AddBooks = ({ addBooks, history}) => {
+const AddBooks = ({ addBook, history}) => {
     const [formData, setFormData] = useState({
         title: '',
         genre: '',
@@ -36,7 +36,7 @@ const AddBooks = ({ addBooks, history}) => {
       <form class="form" onSubmit={
           e => {
               e.preventDefault();
-              addBooks(formData, history);
+              addBook(formData, history);
           }
       }>
         <div className="form-group">
@@ -51,7 +51,6 @@ const AddBooks = ({ addBooks, history}) => {
           <select name="genres" 
           value={genre}
           onChange={e => onChange(e)}>
-            <option value="0">* What Genre is it? </option>
             <option value="Horror">Horror</option>
             <option value="Science Fiction">Science Fiction</option>
             <option value="Comedy">Comedy</option>
@@ -88,7 +87,7 @@ const AddBooks = ({ addBooks, history}) => {
 }
 
 AddBooks.propTypes = {
-    addBooks: PropTypes.func.isRequired,
+    addBook: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addBooks })(withRouter(AddBooks));
+export default connect(null, { addBook })(withRouter(AddBooks));
