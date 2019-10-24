@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import './styles/App.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 import Landing from './components/redux/layout/Landing';
 import Routes from './components/redux/routing/Routes';
